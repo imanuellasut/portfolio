@@ -1,0 +1,11 @@
+{
+  "navbar": {
+    "menu1": "Beranda",
+    "menu2": "Tentang",
+    "menu3": "Pekerjaan",
+    "menu4": "Kontak"
+  },
+  "hero": {
+    "title": "Kreativitas dan Keterampilan di Setiap Baris Kode"
+  }
+}

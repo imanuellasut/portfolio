@@ -1,0 +1,11 @@
+{
+  "navbar": {
+    "menu1": "Home",
+    "menu2": "About",
+    "menu3": "Work",
+    "menu4": "Contact"
+  },
+  "hero": {
+    "title": "Creativity and Skill in Every Line of Code"
+  }
+}

@@ -1,13 +1,35 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-scroll';
+import { Link, useLocation } from 'react-scroll'; // Pastikan menggunakan react-scroll
 import { IoCodeDownloadOutline } from 'react-icons/io5';
+import { useTranslation } from 'react-i18next';
 
 import Logo from '../assets/img/LOGO_CH.png';
+import LogoBulat from '../assets/img/LOGO/logoBulat2.png';
+import LengUS from '../assets/img/US.png';
+import LengID from '../assets/img/ID.png';
 
 function Navbar() {
   const [activeSection, setActiveSection] = useState('');
   const [isLogoClicked, setIsLogoClicked] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isIndonesian, setIsIndonesian] = useState(false);
+
+  const { t, i18n } = useTranslation(); // Menggunakan useTranslation hook
+
+  // Fungsi untuk mengganti bahasa
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  const handleClick = () => {
+    const newLang = isIndonesian ? 'en' : 'id'; // Ganti antara 'en' dan 'id'
+    i18n.changeLanguage(newLang); // Ubah bahasa
+    setIsIndonesian(!isIndonesian); // Toggle state
+  };
+
+  const handleSetActive = (to) => {
+    setActiveSection(to);
+  };
 
   // Fungsi untuk toggle menu
   const toggleMenu = () => {
@@ -19,133 +41,105 @@ function Navbar() {
   };
 
   return (
-    <nav className="fixed left-1/2 top-0 z-50 mt-6 -translate-x-1/2 transform">
-      {/* Navbar Desktop and Tablet */}
-      <div className="relative mx-auto hidden items-center justify-center overflow-hidden font-sans text-navbar-phone text-textLight lg:flex lg:text-navbar-tablet">
-        {/* Menu Items */}
-        <ul
-          className={`bg-background ${isLogoClicked ? 'flex h-auto w-[160px] items-center rounded-full px-[8px] py-[12px] transition-all duration-300 ease-in' : 'flex h-auto w-full items-center rounded-full px-[12px] py-[12px] transition-all duration-300'}`}
-        >
-          {/* Menu Item Group 1 */}
-          <li
-            className={`${isLogoClicked ? '-translate-x-80 transition-transform duration-100 ease-out' : 'transition-transform duration-500 ease-linear'}`}
-          >
-            <Link
-              to="home"
-              smooth={true}
-              duration={500}
-              spy={true}
-              onSetActive={() => setActiveSection('home')}
-              className={`cursor-pointer px-[8px] py-[8px] hover:text-primary ${activeSection === 'home' ? 'font-semibold text-primary' : 'text-textLight'}`}
-            >
-              Home
-            </Link>
-          </li>
-          <li
-            className={`ml-[24px] ${isLogoClicked ? '-translate-x-80 transition-transform duration-100 ease-out' : 'transition-transform duration-300 ease-linear'}`}
-          >
-            <Link
-              to="about"
-              smooth={true}
-              duration={500}
-              offset={-16}
-              spy={true}
-              onSetActive={() => setActiveSection('about')}
-              className={`cursor-pointer px-[8px] py-[8px] hover:text-primary ${activeSection === 'about' ? 'font-semibold text-primary' : 'text-textLight'}`}
-            >
-              About
-            </Link>
-          </li>
-
-          {/* Logo */}
-          <li
-            className={`flex items-center ${isLogoClicked ? 'absolute mx-auto items-center' : 'mx-[48px]'}`}
-            onClick={handleLogoClick}
-          >
-            <img
-              src={Logo}
-              alt="Logo"
-              width={50}
-              className={`max-w-min ${isLogoClicked ? 'transition-all duration-[320ms] ease-in-out' : 'transition-transform duration-100 ease-in-out'}`}
-            />
-            <p
-              className={`rounded-full bg-textLight px-[8px] py-[8px] text-small-text font-black text-background ${isLogoClicked ? 'font-sans transition-all duration-[320ms] ease-in-out' : 'absolute translate-x-72 transition-transform duration-100 ease-in-out'}`}
-            >
-              PORTFOLIO
-            </p>
-          </li>
-
-          {/* Menu Item Group 2 */}
-          <li
-            className={`mr-[24px] ${isLogoClicked ? 'translate-x-80 transition-transform duration-100 ease-out' : 'transition-transform duration-300 ease-linear'}`}
-          >
-            <Link
-              to="work"
-              smooth={true}
-              duration={500}
-              className="cursor-pointer px-[8px] py-[8px] transition-colors hover:text-primary"
-            >
-              Work
-            </Link>
-          </li>
-          <li
-            className={` ${isLogoClicked ? 'translate-x-80 transition-transform duration-100 ease-out' : 'transition-transform duration-500 ease-linear'}`}
-          >
-            <Link
-              to="contact"
-              smooth={true}
-              duration={500}
-              className="cursor-pointer px-[8px] py-[8px] hover:text-primary"
-            >
-              Contact
-            </Link>
-          </li>
-        </ul>
-      </div>
-
-      {/* Navbar Phone */}
-      <div className="flex flex-col items-center justify-center lg:hidden">
-        <div className="flex w-[200px] justify-between rounded-full bg-background px-[12px] py-[12px]">
-          <img src={Logo} alt="Logo" width={50} />
-          {/* Tombol label dengan event onClick untuk toggle menu */}
-          <label
-            className={`cursor-pointer content-center items-center rounded-full bg-textLight px-[6px] transition-transform ${isMenuOpen ? 'rotate-180' : ''}`}
-            onClick={toggleMenu}
-          >
-            <IoCodeDownloadOutline size={25} />
-          </label>
+    <nav className="fixed left-1/2 top-0 z-50 mt-6 w-full -translate-x-1/2 transform lg:px-[100px]">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-white">
+        {/* Logo */}
+        <div className="">
+          <img src={LogoBulat} alt="Logo" className="h-10 w-10" />
         </div>
-        {/* Conditional rendering untuk menampilkan ul berdasarkan state */}
-        {isMenuOpen && (
-          <ul className="menu mt-4 flex w-[200px] flex-col gap-6 rounded-[24px] bg-background px-2 py-[24px] text-center text-navbar-phone text-textLight">
-            <li>
+
+        {/* Navigation Links */}
+        <div className="glassmorphism rounded-full px-4 py-2">
+          <ul className="flex space-x-6 font-medium text-gray-300">
+            <li className="flex cursor-pointer items-center gap-2">
+              {activeSection === 'home' && (
+                <div className="h-2 w-2 rounded-full bg-primary"></div>
+              )}
               <Link
                 to="home"
                 smooth={true}
                 duration={500}
                 spy={true}
-                onSetActive={() => setActiveSection('home')}
-                className={`cursor-pointer px-[8px] py-[8px] hover:text-primary ${activeSection === 'home' ? 'font-semibold text-primary' : 'text-textLight'}`}
+                onSetActive={() => handleSetActive('home')}
+                className="cursor-pointer"
               >
-                Home
+                {t('navbar.menu1')}
               </Link>
             </li>
-            <li className="">
+            <li className="flex cursor-pointer items-center gap-2">
+              {activeSection === 'about' && (
+                <div className="h-2 w-2 rounded-full bg-primary"></div>
+              )}
               <Link
                 to="about"
                 smooth={true}
                 duration={500}
                 spy={true}
-                onSetActive={() => setActiveSection('about')}
-                className={`cursor-pointer px-[8px] py-[8px] hover:text-primary ${activeSection === 'about' ? 'font-semibold text-primary' : 'text-textLight'}`}
+                onSetActive={() => handleSetActive('about')}
+                className="cursor-pointer"
               >
-                About
+                {t('navbar.menu2')}
               </Link>
             </li>
-            <li>Work</li>
-            <li>Contact</li>
+            <li className="flex cursor-pointer items-center gap-2">
+              {activeSection === 'services' && (
+                <div className="h-2 w-2 rounded-full bg-primary"></div>
+              )}
+              <Link
+                to="services"
+                smooth={true}
+                duration={500}
+                spy={true}
+                onSetActive={() => handleSetActive('services')}
+                className="cursor-pointer"
+              >
+                {t('navbar.menu3')}
+              </Link>
+            </li>
+            <li className="flex cursor-pointer items-center gap-2">
+              {activeSection === 'contact' && (
+                <div className="h-2 w-2 rounded-full bg-primary"></div>
+              )}
+              <Link
+                to="contact"
+                smooth={true}
+                duration={500}
+                spy={true}
+                onSetActive={() => handleSetActive('contact')}
+                className="cursor-pointer"
+              >
+                {t('navbar.menu4')}
+              </Link>
+            </li>
           </ul>
-        )}
+        </div>
+
+        {/* Button */}
+        <button
+          className="glassmorphism relative flex items-center overflow-hidden rounded-full"
+          onClick={handleClick}
+        >
+          <div
+            className={`flex items-center gap-2 transition-transform duration-500 ${isIndonesian ? 'translate-x-[-100px]' : ''}`}
+          >
+            <img
+              src={isIndonesian ? LengUS : LengUS}
+              alt={isIndonesian ? 'Indonesian Flag' : 'US Flag'}
+              className={`h-8 w-8 rounded-full transition-transform duration-500 ${isIndonesian ? 'rotate-180' : ''}`}
+            />
+            <span className="pr-2">{isIndonesian ? 'US' : 'US'}</span>
+          </div>
+          <div
+            className={`absolute flex items-center gap-2 transition-transform duration-500 ${isIndonesian ? 'right-0 translate-x-0' : 'translate-x-full'}`}
+          >
+            <span className="pl-2">ID</span>
+            <img
+              src={LengID}
+              alt="Indonesian Flag"
+              className={`h-8 w-8 rounded-full transition-transform duration-500 ${isIndonesian ? '' : 'rotate-180'}`}
+            />
+          </div>
+        </button>
       </div>
     </nav>
   );

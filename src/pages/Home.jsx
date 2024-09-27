@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
-import ImgProfile from '../assets/img/ImgProfile.png';
+import { useTranslation } from 'react-i18next';
 import { MdArrowCircleDown } from 'react-icons/md';
 
+import ImgProfile from '../assets/img/ImgProfile.png';
+import BgHero from '../assets/img/BGDesktop.jpg';
+
 function Home() {
+  const { t } = useTranslation(); // Menggunakan useTranslation hook
   // State untuk menyimpan posisi kursor
   const [offsetX, setOffsetX] = useState(0);
   const [offsetY, setOffsetY] = useState(0);
@@ -30,7 +34,10 @@ function Home() {
   return (
     <section
       id="home"
-      className="flex min-h-screen items-center justify-center rounded-b-[50px] bg-primary px-[25px] lg:rounded-b-[100px] lg:px-[100px]"
+      className="flex h-screen min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat px-[25px] sm:bg-top md:bg-center lg:bg-bottom lg:px-[100px] xl:bg-right"
+      style={{
+        backgroundImage: `url('${BgHero}')`,
+      }}
     >
       <div className="mt-[42px] flex flex-col items-center lg:mt-[42px]">
         <div className="z-0">
@@ -58,8 +65,8 @@ function Home() {
           </span>
         </div>
 
-        <h1 className="mt-[32px] text-center font-hero text-hero-title-tablet font-extrabold lg:w-[900px] lg:text-hero-title">
-          "Creativity and Skill in Every Line of Code"
+        <h1 className="mt-[32px] text-center font-hero text-hero-title-tablet font-extrabold text-white lg:w-[900px] lg:text-hero-title">
+          "{t('hero.title')}"
         </h1>
         <div>
           <Link
