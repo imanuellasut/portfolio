@@ -20,7 +20,7 @@ function App() {
       <main className="bg-background">
         <Routes>
           {/* Redirect dari root / ke /en */}
-          <Route path="/portfolio" element={<Navigate to="/en" replace />} />
+          <Route path="/" element={<Navigate to="/en" replace />} />
           {/* Route untuk halaman dengan path /en */}
           <Route path="/en" element={<Page />} />
           {/* Route untuk halaman dengan path /id */}
