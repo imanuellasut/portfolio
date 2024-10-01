@@ -68,7 +68,7 @@ function Home() {
         <h1 className="mt-[32px] text-center font-hero text-hero-title-tablet font-extrabold text-white lg:w-[900px] lg:text-hero-title">
           "{t('hero.title')}"
         </h1>
-        <div>
+        <div className="text-white">
           <Link
             to="about"
             smooth={true}

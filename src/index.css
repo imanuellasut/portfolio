@@ -49,7 +49,7 @@ ul li .active {
   /* Efek blur */
   -webkit-backdrop-filter: blur(10px);
   /* Blur untuk browser berbasis WebKit */
-  border: 1px solid #C0E850;
+  border: 1px solid #303030;
   /* Border semi-transparan */
   border-radius: 9999px;
   /* Radius penuh */
