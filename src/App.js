@@ -15,12 +15,12 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/portfolio">
       <Navbar />
       <main className="bg-background">
         <Routes>
           {/* Redirect dari root / ke /en */}
-          <Route path="/portofilo" element={<Navigate to="/en" replace />} />
+          <Route path="/portfolio" element={<Navigate to="/en" replace />} />
           {/* Route untuk halaman dengan path /en */}
           <Route path="/en" element={<Page />} />
           {/* Route untuk halaman dengan path /id */}

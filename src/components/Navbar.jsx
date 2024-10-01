@@ -33,7 +33,7 @@ function Navbar() {
     <nav className="fixed left-0 top-0 z-50 w-full bg-transparent py-6">
       <div className="container mx-auto flex items-center justify-center px-4">
         {/* Logo */}
-        <a href={`/${lang}`} className="absolute left-0 ml-[100px]">
+        <a href={`/portfolio/${lang}`} className="absolute left-0 ml-[100px]">
           <img src={LogoBulat} alt="Logo" className="h-10 w-10" />
         </a>
 
